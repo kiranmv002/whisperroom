@@ -48,3 +48,64 @@ input, textarea {
   padding: 5px 14px;
   font-size: 11px;
   color: #a78bfa;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  font-size: 48px;
+  font-weight: 900;
+  color: #f0eeff;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.logo span {
+  color: #a78bfa;
+}
+
+/* ===== TAGLINE ===== */
+.tagline {
+  font-size: 13px;
+  color: rgba(200, 195, 220, 0.5);
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+/* ===== BUTTONS ===== */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  color: #fff;
+}
+
+.btn-primary:hover { opacity: 0.88; }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(138, 92, 246, 0.4);
+  color: #a78bfa;
+}
+
+.btn-outline:hover {
+  background: rgba(138, 92, 246, 0.1);
+}
