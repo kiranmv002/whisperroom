@@ -25,25 +25,28 @@ you can whisper secretly, and panic exit anytime.
 3. That's it — no installs needed!
 
 ---
-
-## Folder Structure
+ 
+## 🗂️ Folder Structure
+ 
+```
 whisperroom/
 ├── html/
-│   ├── index.html
-│   ├── create.html
-│   ├── join.html
-│   ├── room.html
-│   └── safe.html
+│   ├── index.html          
+│   ├── create.html         
+│   ├── join.html          
+│   ├── room.html         
+│   └── safe.html          
 ├── css/
-│   └── style.css
+│   └── style.css          
 ├── js/
-│   ├── app.js
-│   ├── create.js
-│   ├── join.js
-│   └── room.js
-├── assets/
+│   ├── app.js             
+│   ├── create.js           
+│   ├── join.js            
+│   └── room.js            
+├── assets/                
 └── README.md
-
+```
+ 
 ---
 
 ## Tech Stack
