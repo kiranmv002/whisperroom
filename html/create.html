@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Room · WhisperRoom</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <div class="page">
+    <div class="center-box">
+
+      <!-- Title -->
+      <h2 class="page-title">Create a Room</h2>
+      <p class="page-sub">A private 6-digit code will be generated</p>
+
+      <!-- Step 1: Enter name -->
+      <div id="step1" style="width:100%;">
+        <input
+          type="text"
+          id="username"
+          class="input"
+          placeholder="Enter your name"
+          maxlength="20"
+        />
+        <button class="btn btn-primary mt" onclick="createRoom()">
+          Generate Room Code
+        </button>
+        <button class="btn btn-ghost mt" onclick="window.location.href='index.html'">
+          ← Back
+        </button>
+      </div>
