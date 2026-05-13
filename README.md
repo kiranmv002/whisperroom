@@ -53,6 +53,15 @@ whisperroom/
 - localStorage — data storage
 
 ---
+ 
+## 📅 Build Progress
+ 
+| Week | What was built | Status |
+|---|---|---|
+| Week 1 | Homepage, base CSS, utilities, create room, join room | ✅ Done |
+
+
+---
 
 ## Status
 🚧 Currently building...
