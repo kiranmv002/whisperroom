@@ -31,3 +31,25 @@
           ← Back
         </button>
       </div>
+
+      <!-- Step 2: Show code -->
+      <div id="step2" style="display:none; width:100%;">
+        <p class="hint">Share this code with your friends</p>
+        <div class="code-box" onclick="copyCode()">
+          <p class="code-label">ROOM CODE</p>
+          <p class="code-text" id="room-code-display">------</p>
+          <p class="code-hint" id="copy-hint">Tap to copy</p>
+        </div>
+        <button class="btn btn-primary mt" onclick="enterRoom()">
+          Enter Room →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/create.js"></script>
+
+</body>
+</html>
