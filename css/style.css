@@ -138,3 +138,48 @@ input, textarea {
   font-size: 12px;
   color: rgba(200, 195, 220, 0.35);
 }
+
+/* ===== CODE BOX ===== */
+.hint {
+  font-size: 13px;
+  color: rgba(200,195,220,0.4);
+  text-align: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.code-box {
+  width: 100%;
+  background: rgba(138, 92, 246, 0.08);
+  border: 1px dashed rgba(138, 92, 246, 0.4);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.code-box:hover {
+  background: rgba(138, 92, 246, 0.14);
+}
+
+.code-label {
+  font-size: 10px;
+  color: rgba(167, 139, 250, 0.6);
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.code-text {
+  font-size: 38px;
+  font-weight: 900;
+  color: #a78bfa;
+  letter-spacing: 0.25em;
+  font-family: monospace;
+}
+
+.code-hint {
+  font-size: 11px;
+  color: rgba(200,195,220,0.3);
+  margin-top: 8px;
+}
