@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Room · WhisperRoom</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <div class="page">
+    <div class="center-box">
+
+      <!-- Title -->
+      <h2 class="page-title">Join a Room</h2>
+      <p class="page-sub">Enter the 6-digit code shared with you</p>
+
+      <!-- Inputs -->
+      <input
+        type="text"
+        id="join-username"
+        class="input"
+        placeholder="Enter your name"
+        maxlength="20"
+      />
+
+      <input
+        type="text"
+        id="join-code"
+        class="input code-input mt"
+        placeholder="_ _ _ _ _ _"
+        maxlength="6"
+      />
+
+      <!-- Error message -->
+      <p class="error-msg" id="join-error" style="display:none;">
+        ❌ Room not found. Check the code and try again.
+      </p>
+
+      <!-- Buttons -->
+      <button class="btn btn-primary mt" onclick="joinRoom()">
+        Join Room →
+      </button>
+      <button class="btn btn-ghost mt" onclick="window.location.href='index.html'">
+        ← Back
+      </button>
+
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/join.js"></script>
+
+</body>
+</html>
