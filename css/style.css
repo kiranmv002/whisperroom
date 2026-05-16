@@ -182,3 +182,23 @@ input, textarea {
   color: rgba(200,195,220,0.3);
   margin-top: 8px;
 }
+
+/* ===== ERROR MESSAGE ===== */
+.error-msg {
+  color: #f87171;
+  font-size: 13px;
+  text-align: center;
+  background: rgba(248, 113, 113, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* ===== CODE INPUT ===== */
+.code-input {
+  text-align: center;
+  letter-spacing: 0.4em;
+  font-size: 22px;
+  font-family: monospace;
+}
