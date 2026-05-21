@@ -353,3 +353,129 @@ input, textarea {
   color: #a78bfa;
   white-space: nowrap;
 }
+
+.whisper-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #f0eeff;
+  font-size: 13px;
+  outline: none;
+}
+
+.whisper-input::placeholder {
+  color: rgba(167,139,250,0.4);
+}
+
+.whisper-send {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.whisper-cancel {
+  background: none;
+  border: none;
+  color: rgba(200,195,220,0.4);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ===== CHAT INPUT ===== */
+.chat-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.chat-input {
+  flex: 1;
+  margin-top: 0;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.send-btn {
+  width: auto;
+  padding: 10px 18px;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 130px;
+  background: #0d0d14;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  padding: 12px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: 10px;
+  color: rgba(200,195,220,0.3);
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.member-item { margin-bottom: 14px; }
+
+.member-name {
+  font-size: 12px;
+  color: rgba(200,195,220,0.6);
+  word-break: break-all;
+  margin-bottom: 3px;
+}
+
+.whisper-btn {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.whisper-btn:hover { color: #c4b5fd; }
+
+/* ===== MODAL ===== */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal {
+  background: #12111a;
+  border: 1px solid rgba(220,38,38,0.3);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-icon { font-size: 40px; margin-bottom: 12px; }
+.modal-title { font-size: 20px; font-weight: 900; color: #f0eeff; margin-bottom: 8px; }
+.modal-sub { font-size: 13px; color: rgba(200,195,220,0.5); line-height: 1.6; }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .logo { font-size: 36px; }
+  .sidebar { width: 90px; }
+  .msg-bubble { max-width: 85%; }
+  .sidebar-title { font-size: 9px; }
+  .member-name { font-size: 11px; }
+}
