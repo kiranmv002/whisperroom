@@ -479,3 +479,104 @@ input, textarea {
   .sidebar-title { font-size: 9px; }
   .member-name { font-size: 11px; }
 }
+
+/* ===== ANIMATIONS ===== */
+
+/* Message fade in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.msg-wrap, .msg-system, .msg-whisper {
+  animation: fadeInUp 0.2s ease;
+}
+
+/* Badge pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #a78bfa;
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Button press effect */
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Page fade in */
+@keyframes pageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page, .room-body {
+  animation: pageFade 0.3s ease;
+}
+
+/* Input shake on error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.input.shake {
+  animation: shake 0.4s ease;
+  border-color: rgba(220,38,38,0.6) !important;
+}
+
+/* Panic button pulse */
+@keyframes panicPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(220,38,38,0); }
+}
+
+.panic-btn {
+  animation: panicPulse 2s ease-in-out infinite;
+}
+
+/* Code box appear */
+@keyframes codeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.code-box {
+  animation: codeAppear 0.3s ease;
+}
+
+/* Safe page shield bounce */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.safe-icon {
+  display: inline-block;
+  animation: bounce 1.5s ease-in-out infinite;
+}
