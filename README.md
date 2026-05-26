@@ -62,6 +62,7 @@ whisperroom/
 | Week | What was built | Status |
 |---|---|---|
 | Week 1 | Homepage, base CSS, utilities, create room, join room | ✅ Done |
+| Week 2 | Chat room core
 
 
 ---
