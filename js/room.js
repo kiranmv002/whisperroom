@@ -6,6 +6,7 @@ let whisperTarget = null
 let lastMessageCount = 0
 let pollInterval = null
 let memberInterval = null
+let typingTimer = null
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -67,6 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  // Typing indicator on message input
+  const msgInput = document.getElementById('msg-input')
+  if (msgInput) {
+    msgInput.addEventListener('input', () => {
+      showTyping()
+    })
+  }
+
 })
 
 // ===== POLL MESSAGES =====
@@ -79,7 +88,6 @@ function pollMessages() {
   if (msgs.length > lastMessageCount) {
     const newMsgs = msgs.slice(lastMessageCount)
     newMsgs.forEach(msg => {
-      // Only render messages from others (own already rendered)
       if (msg.username !== currentUser) {
         renderMessage(msg)
       }
@@ -180,7 +188,6 @@ function renderMembers() {
     name.textContent = m === currentUser ? `${m} (you)` : m
     div.appendChild(name)
 
-    // Whisper button for other members
     if (m !== currentUser) {
       const btn = document.createElement('button')
       btn.className = 'whisper-btn'
@@ -221,7 +228,7 @@ function sendWhisper() {
   sentEl.textContent = `🤫 You whispered to ${whisperTarget}: ${text}`
   document.getElementById('messages').appendChild(sentEl)
 
-  // Save whisper hint to room (others see hint not content)
+  // Save whisper hint to room
   const rooms = load('wr_rooms') || {}
   if (rooms[currentCode]) {
     rooms[currentCode].messages.push({
@@ -258,26 +265,29 @@ function hidePanicModal() {
 function panicExit() {
   const rooms = load('wr_rooms') || {}
   if (rooms[currentCode]) {
-    // Delete all messages from this user
     rooms[currentCode].messages = rooms[currentCode].messages.filter(
       m => m.username !== currentUser
     )
-    // Remove from members
     rooms[currentCode].members = rooms[currentCode].members.filter(
       m => m !== currentUser
     )
     save('wr_rooms', rooms)
   }
 
-  // Stop polling
   clearInterval(pollInterval)
   clearInterval(memberInterval)
-
-  // Clear session
   clear('wr_user')
-
-  // Go to safe page
   window.location.href = 'safe.html'
+}
+
+// ===== TYPING INDICATOR =====
+function showTyping() {
+  const indicator = document.getElementById('typing-indicator')
+  indicator.textContent = `${currentUser} is typing...`
+  clearTimeout(typingTimer)
+  typingTimer = setTimeout(() => {
+    indicator.textContent = ''
+  }, 1500)
 }
 
 // ===== HELPERS =====
