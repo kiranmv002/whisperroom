@@ -5,9 +5,13 @@ let generatedCode = ''
 function createRoom() {
   const username = document.getElementById('username').value.trim()
 
-  // Validation
+  // Validation with shake animation
   if (!username) {
-    document.getElementById('username').style.borderColor = 'rgba(220,38,38,0.6)'
+    const input = document.getElementById('username')
+    input.classList.remove('shake')
+    void input.offsetWidth
+    input.classList.add('shake')
+    setTimeout(() => input.classList.remove('shake'), 400)
     return
   }
 
