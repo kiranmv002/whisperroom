@@ -609,3 +609,27 @@ input, textarea {
   border-color: rgba(220,38,38,0.3);
 }
 
+.timer-box.timer-danger .timer-text {
+  color: #f87171;
+}
+
+/* Timer flashes under 1 minute */
+@keyframes timerFlash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.timer-box.timer-critical {
+  background: rgba(220,38,38,0.2);
+  border-color: rgba(220,38,38,0.6);
+  animation: timerFlash 1s ease-in-out infinite;
+}
+
+.timer-box.timer-critical .timer-text {
+  color: #ef4444;
+}
+
+/* ===== DESTROY MODAL ===== */
+.destroy-modal {
+  border-color: rgba(138,92,246,0.3);
+}
