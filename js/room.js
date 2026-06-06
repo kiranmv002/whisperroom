@@ -7,6 +7,8 @@ let lastMessageCount = 0
 let pollInterval = null
 let memberInterval = null
 let typingTimer = null
+let timerInterval = null
+let timeLeft = 60 * 60 // 60 minutes in seconds
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const rooms = load('wr_rooms') || {}
   if (!rooms[currentCode]) {
     window.location.href = 'index.html'
+    return
+  }
+
+  // Set timer from room creation time
+  const createdAt = rooms[currentCode].createdAt
+  const elapsed = Math.floor((Date.now() - createdAt) / 1000)
+  timeLeft = Math.max(0, (60 * 60) - elapsed)
+
+  // If room already expired
+  if (timeLeft <= 0) {
+    destroyRoom()
     return
   }
 
@@ -48,6 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start polling
   pollInterval = setInterval(pollMessages, 1000)
   memberInterval = setInterval(renderMembers, 2000)
+
+  // Start self-destruct timer
+  updateTimerDisplay()
+  timerInterval = setInterval(() => {
+    timeLeft--
+    updateTimerDisplay()
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval)
+      destroyRoom()
+    }
+  }, 1000)
 
   // Blur chat on tab switch
   document.addEventListener('visibilitychange', () => {
@@ -77,6 +101,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 })
+
+// ===== TIMER =====
+function updateTimerDisplay() {
+  const mins = Math.floor(timeLeft / 60)
+  const secs = timeLeft % 60
+  const display = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+  document.getElementById('timer-text').textContent = display
+
+  // Turn red when under 5 minutes
+  const timerBox = document.getElementById('timer-box')
+  if (timeLeft <= 300) {
+    timerBox.classList.add('timer-danger')
+  }
+
+  // Flash when under 1 minute
+  if (timeLeft <= 60) {
+    timerBox.classList.add('timer-critical')
+  }
+}
+
+// ===== DESTROY ROOM =====
+function destroyRoom() {
+  clearInterval(pollInterval)
+  clearInterval(memberInterval)
+  clearInterval(timerInterval)
+
+  // Delete room from localStorage
+  const rooms = load('wr_rooms') || {}
+  delete rooms[currentCode]
+  save('wr_rooms', rooms)
+
+  // Clear session
+  clear('wr_user')
+
+  // Show destroyed modal
+  document.getElementById('destroy-modal').style.display = 'flex'
+}
 
 // ===== POLL MESSAGES =====
 function pollMessages() {
@@ -113,14 +174,12 @@ function sendMessage() {
     type: 'normal'
   }
 
-  // Save to localStorage
   const rooms = load('wr_rooms') || {}
   if (!rooms[currentCode]) return
   rooms[currentCode].messages.push(msg)
   save('wr_rooms', rooms)
   lastMessageCount = rooms[currentCode].messages.length
 
-  // Render immediately
   renderMessage(msg)
   input.value = ''
   scrollToBottom()
@@ -130,7 +189,6 @@ function sendMessage() {
 function renderMessage(msg) {
   const container = document.getElementById('messages')
 
-  // System message
   if (msg.type === 'system') {
     const el = document.createElement('p')
     el.className = 'msg-system'
@@ -139,7 +197,6 @@ function renderMessage(msg) {
     return
   }
 
-  // Whisper hint
   if (msg.type === 'whisper') {
     const el = document.createElement('p')
     el.className = 'msg-whisper'
@@ -148,7 +205,6 @@ function renderMessage(msg) {
     return
   }
 
-  // Normal message
   const isMine = msg.username === currentUser
   const wrap = document.createElement('div')
   wrap.className = `msg-wrap ${isMine ? 'mine' : 'theirs'}`
@@ -222,13 +278,11 @@ function sendWhisper() {
   const text = input.value.trim()
   if (!text || !whisperTarget) return
 
-  // Show sent whisper to yourself only
   const sentEl = document.createElement('p')
   sentEl.className = 'msg-whisper'
   sentEl.textContent = `🤫 You whispered to ${whisperTarget}: ${text}`
   document.getElementById('messages').appendChild(sentEl)
 
-  // Save whisper hint to room
   const rooms = load('wr_rooms') || {}
   if (rooms[currentCode]) {
     rooms[currentCode].messages.push({
@@ -276,6 +330,7 @@ function panicExit() {
 
   clearInterval(pollInterval)
   clearInterval(memberInterval)
+  clearInterval(timerInterval)
   clear('wr_user')
   window.location.href = 'safe.html'
 }
