@@ -571,3 +571,41 @@ input, textarea {
   .sidebar-title { font-size: 9px; }
   .member-name { font-size: 11px; }
 }
+
+/* ===== HEADER RIGHT ===== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== TIMER ===== */
+.timer-box {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
+}
+
+.timer-icon {
+  font-size: 13px;
+}
+
+.timer-text {
+  font-size: 13px;
+  font-family: monospace;
+  font-weight: 700;
+  color: rgba(200,195,220,0.7);
+  letter-spacing: 0.05em;
+}
+
+/* Timer turns red under 5 minutes */
+.timer-box.timer-danger {
+  background: rgba(220,38,38,0.1);
+  border-color: rgba(220,38,38,0.3);
+}
+
