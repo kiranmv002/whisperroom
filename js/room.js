@@ -121,7 +121,6 @@ function updateTimerDisplay() {
   }
 }
 
-// ===== DESTROY ROOM =====
 function destroyRoom() {
   clearInterval(pollInterval)
   clearInterval(memberInterval)
@@ -135,8 +134,19 @@ function destroyRoom() {
   // Clear session
   clear('wr_user')
 
-  // Show destroyed modal
-  document.getElementById('destroy-modal').style.display = 'flex'
+  // Step 1 — Red flash overlay
+  const flash = document.createElement('div')
+  flash.className = 'red-flash'
+  document.body.appendChild(flash)
+
+  // Step 2 — Shake the screen
+  document.body.classList.add('screen-shake')
+  setTimeout(() => document.body.classList.remove('screen-shake'), 500)
+
+  // Step 3 — Show destroyed modal after short delay
+  setTimeout(() => {
+    document.getElementById('destroy-modal').style.display = 'flex'
+  }, 400)
 }
 
 // ===== POLL MESSAGES =====
