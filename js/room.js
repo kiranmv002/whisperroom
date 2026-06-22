@@ -415,3 +415,49 @@ document.addEventListener('keydown', (e) => {
     showScreenshotWarning()
   }
 })
+
+// Detect Ctrl+S (save page)
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault()
+    showScreenshotWarning()
+  }
+})
+
+// Detect F12 (devtools)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'F12') {
+    e.preventDefault()
+    showScreenshotWarning()
+  }
+})
+
+// Detect Ctrl+Shift+I (devtools)
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+    e.preventDefault()
+    showScreenshotWarning()
+  }
+})
+
+// Detect window resize (possible screen recording tool)
+let originalWidth = window.innerWidth
+let originalHeight = window.innerHeight
+
+window.addEventListener('resize', () => {
+  const widthChanged = Math.abs(window.innerWidth - originalWidth) > 100
+  const heightChanged = Math.abs(window.innerHeight - originalHeight) > 100
+  if (widthChanged || heightChanged) {
+    originalWidth = window.innerWidth
+    originalHeight = window.innerHeight
+  }
+})
+
+// Add watermark with username to messages area
+function addWatermark() {
+  const messages = document.getElementById('messages')
+  if (messages && currentUser) {
+    messages.classList.add('messages-watermark')
+    messages.setAttribute('data-user', currentUser.toUpperCase())
+  }
+}
