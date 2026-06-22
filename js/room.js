@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add join message
   addSystemMessage(`👋 You joined as ${currentUser}`)
 
+  // Add watermark
+  addWatermark()
+
   // Start polling
   pollInterval = setInterval(pollMessages, 1000)
   memberInterval = setInterval(renderMembers, 2000)
