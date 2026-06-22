@@ -368,3 +368,50 @@ function escapeHTML(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 }
+
+// ===== SCREENSHOT DETECTION =====
+
+function showScreenshotWarning() {
+  // Don't show if already showing
+  if (document.getElementById('screenshot-warning')) return
+
+  const overlay = document.createElement('div')
+  overlay.className = 'screenshot-warning'
+  overlay.id = 'screenshot-warning'
+
+  overlay.innerHTML = `
+    <p class="screenshot-warning-icon">🚫</p>
+    <h3 class="screenshot-warning-title">Screenshot Detected</h3>
+    <p class="screenshot-warning-sub">
+      Screenshots are not allowed in WhisperRoom.
+      This incident has been noted.
+    </p>
+    <button class="screenshot-warning-btn" onclick="dismissWarning()">
+      I Understand
+    </button>
+  `
+
+  document.body.appendChild(overlay)
+}
+
+function dismissWarning() {
+  const el = document.getElementById('screenshot-warning')
+  if (el) el.remove()
+}
+
+// Detect Print Screen key
+document.addEventListener('keyup', (e) => {
+  if (e.key === 'PrintScreen') {
+    showScreenshotWarning()
+    // Clear clipboard so screenshot is blank
+    navigator.clipboard.writeText('').catch(() => {})
+  }
+})
+
+// Detect Ctrl+P (print / save as PDF)
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'p') {
+    e.preventDefault()
+    showScreenshotWarning()
+  }
+})
