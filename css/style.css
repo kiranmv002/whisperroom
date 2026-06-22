@@ -692,3 +692,31 @@ input, textarea {
   pointer-events: none;
   animation: flashRed 0.6s ease forwards;
 }
+
+
+/* ===== SCREENSHOT WARNING ===== */
+.screenshot-warning {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  animation: pageFade 0.2s ease;
+}
+
+.screenshot-warning-icon {
+  font-size: 52px;
+  margin-bottom: 16px;
+}
+
+.screenshot-warning-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: #f0eeff;
+  margin-bottom: 8px;
+}
