@@ -693,7 +693,6 @@ input, textarea {
   animation: flashRed 0.6s ease forwards;
 }
 
-
 /* ===== SCREENSHOT WARNING ===== */
 .screenshot-warning {
   position: fixed;
@@ -719,4 +718,48 @@ input, textarea {
   font-weight: 900;
   color: #f0eeff;
   margin-bottom: 8px;
+}
+
+.screenshot-warning-sub {
+  font-size: 13px;
+  color: rgba(200,195,220,0.5);
+  margin-bottom: 24px;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.screenshot-warning-btn {
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.screenshot-warning-btn:hover {
+  opacity: 0.88;
+}
+
+/* Watermark on chat */
+.messages-watermark {
+  position: relative;
+}
+
+.messages-watermark::after {
+  content: attr(data-user);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(138, 92, 246, 0.06);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  z-index: 1;
 }
